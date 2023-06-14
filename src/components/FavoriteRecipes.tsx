@@ -6,7 +6,7 @@ const FavoriteRecipes: React.FC = () => {
   const favoriteRecipes = useSelector(
     (state: any) => state.favoriteRecipes.recipes
   );
-  console.log(favoriteRecipes);
+
   console.log("sss");
 
   const dispatch = useDispatch();

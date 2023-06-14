@@ -7,7 +7,7 @@ const Register: React.FC = () => {
 
   const handleRegister = () => {
     // Перевірка наявності введеного email у сесійному сховищі
-    const registeredEmail = sessionStorage.getItem(email);
+    const registeredEmail = localStorage.getItem(email);
     if (registeredEmail) {
       setError("Цей email вже зареєстрований");
       return;
@@ -15,9 +15,9 @@ const Register: React.FC = () => {
 
     // Збереження даних реєстрації в сесійному сховищі
     if (email && password) {
-      sessionStorage.setItem(email, password);
-      sessionStorage.setItem("isLoggedIn", "true");
-      sessionStorage.setItem("userEmail", email);
+      localStorage.setItem(email, password);
+      localStorage.setItem("isLoggedIn", "true");
+      localStorage.setItem("userEmail", email);
       window.location.href = "/dashboard";
     }
   };

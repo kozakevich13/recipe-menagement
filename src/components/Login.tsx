@@ -7,12 +7,12 @@ const Login: React.FC = () => {
 
   const handleLogin = () => {
     // Отримання пароля з сесійного сховища
-    const storedPassword = sessionStorage.getItem(email);
+    const storedPassword = localStorage.getItem(email);
 
     // Перевірка авторизаційних даних
     if (storedPassword && storedPassword === password) {
-      sessionStorage.setItem("isLoggedIn", "true");
-      sessionStorage.setItem("userEmail", email);
+      localStorage.setItem("isLoggedIn", "true");
+      localStorage.setItem("userEmail", email);
       window.location.href = "/dashboard";
     } else {
       setError("Неправильні дані авторизації");

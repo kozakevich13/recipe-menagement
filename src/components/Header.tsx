@@ -4,13 +4,13 @@ import "../style/Header.css";
 import { useSelector } from "react-redux";
 
 const Header: React.FC = () => {
-  const isLoggedIn = sessionStorage.getItem("isLoggedIn") === "true";
+  const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
   const favoriteRecipes = useSelector(
     (state: any) => state.favoriteRecipes.recipes
   );
 
   const handleLogout = () => {
-    sessionStorage.clear();
+    localStorage.clear();
     window.location.href = "/login";
   };
 
