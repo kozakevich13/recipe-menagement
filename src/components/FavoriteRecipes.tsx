@@ -27,6 +27,7 @@ const FavoriteRecipes: React.FC = () => {
   const [showAddForm, setShowAddForm] = useState(false);
   const [showUserRecipes, setShowUserRecipes] = useState(true);
   const [showFavoriteRecipes, setShowFavoriteRecipes] = useState(true);
+  const userName = localStorage.getItem("userEmail");
 
   const [newRecipe, setNewRecipe] = useState<Recipe>({
     id: 0,
@@ -178,7 +179,7 @@ const FavoriteRecipes: React.FC = () => {
 
       {showUserRecipes && (
         <div>
-          <h2>Recipes Added by User</h2>
+          <h2>Recipes Added by {userName}</h2>
           {userRecipes.map((recipe: any) => (
             <div className="recipe-item" key={recipe.title}>
               <RecipeItem key={recipe.title} recipe={recipe} />
@@ -197,7 +198,7 @@ const FavoriteRecipes: React.FC = () => {
       {/* Список улюблених рецептів */}
       {showFavoriteRecipes && (
         <div>
-          <h2>Recipes liked by User</h2>
+          <h2>Recipes liked by {userName}</h2>
           {favoriteRecipes.map((recipe: any, index: number) => (
             <div className="recipe-item" key={recipe.id}>
               <RecipeItem key={index} recipe={recipe} />
