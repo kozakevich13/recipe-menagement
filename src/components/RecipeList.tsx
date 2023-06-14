@@ -17,6 +17,8 @@ interface RecipeListProps {
 }
 
 const RecipeList: React.FC<RecipeListProps> = ({ recipes }) => {
+  const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+
   const favoriteRecipes = useSelector(
     (state: any) => state.favoriteRecipes.recipes
   );
@@ -49,26 +51,33 @@ const RecipeList: React.FC<RecipeListProps> = ({ recipes }) => {
               className="recipe-image"
             />
           )}
-          <button
-            onClick={() => handleAddRecipe(recipe)}
-            disabled={favoriteRecipes.some(
-              (favoriteRecipe: { id: number }) =>
-                favoriteRecipe.id === recipe.id
-            )}
-          >
-            Add to Favorites
-          </button>
-          <button
-            onClick={() => handleRemoveRecipe(recipe.id)}
-            disabled={
-              !favoriteRecipes.some(
-                (favoriteRecipe: { id: number }) =>
-                  favoriteRecipe.id === recipe.id
-              )
-            }
-          >
-            Remove from Favorites
-          </button>
+
+          {isLoggedIn ? (
+            <>
+              <button
+                onClick={() => handleAddRecipe(recipe)}
+                disabled={favoriteRecipes.some(
+                  (favoriteRecipe: { id: number }) =>
+                    favoriteRecipe.id === recipe.id
+                )}
+              >
+                Add to Favorites
+              </button>
+              <button
+                onClick={() => handleRemoveRecipe(recipe.id)}
+                disabled={
+                  !favoriteRecipes.some(
+                    (favoriteRecipe: { id: number }) =>
+                      favoriteRecipe.id === recipe.id
+                  )
+                }
+              >
+                Remove from Favorites
+              </button>
+            </>
+          ) : (
+            <></>
+          )}
         </div>
       ))}
     </div>
