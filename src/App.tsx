@@ -6,6 +6,7 @@ import Dashboard from "./components/Dashboard";
 import Header from "./components/Header";
 import Home from "./components/Home";
 import FavoriteRecipes from "./components/FavoriteRecipes";
+import "./App.css";
 
 const App: React.FC = () => {
   return (

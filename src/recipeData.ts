@@ -15,7 +15,7 @@ const recipeData: Recipe[] = [
     ingredients: ["Паста", "Гриби", "Цибуля", "Спеції"],
     instructions:
       "1. Приготуйте пасту. 2. Обсмажте гриби та цибулю. 3. Змішайте з пастою. 4. Додайте спеції за смаком.",
-    image: "https://example.com/images/pasta-mushrooms.jpg",
+    image: "https://nssz.com.ua/image/catalog/blog/2020/pasta.jpg",
   },
   {
     id: 2,
@@ -24,35 +24,19 @@ const recipeData: Recipe[] = [
     ingredients: ["Яйця", "Помідори", "Перець", "Цибуля", "Сир", "Спеції"],
     instructions:
       "1. Розбийте яйця у миску. 2. Додайте нарізані овочі та сир. 3. Приправте спеціями. 4. Змішайте все добре. 5. Випікайте омлет на сковороді до готовності.",
-    image: "https://example.com/images/vegetable-omelette.jpg",
+    image: "https://blog.metro.ua/wp-content/uploads/2019/06/8-min-1.jpg",
   },
   {
     id: 3,
-    title: "Омлет з овочами",
+    title: "Наполеон",
     description: "Смачний омлет з соковитими овочами.",
     ingredients: ["Яйця", "Помідори", "Перець", "Цибуля", "Сир", "Спеції"],
     instructions:
       "1. Розбийте яйця у миску. 2. Додайте нарізані овочі та сир. 3. Приправте спеціями. 4. Змішайте все добре. 5. Випікайте омлет на сковороді до готовності.",
-    image: "https://example.com/images/vegetable-omelette.jpg",
+    image:
+      "https://static.1000.menu/img/content-v2/7f/64/43702/tort-salat-napoleon-iz-korjei-s-kuricei_1615983245_27_max.jpg",
   },
-  {
-    id: 4,
-    title: "Омлет з овочами",
-    description: "Смачний омлет з соковитими овочами.",
-    ingredients: ["Яйця", "Помідори", "Перець", "Цибуля", "Сир", "Спеції"],
-    instructions:
-      "1. Розбийте яйця у миску. 2. Додайте нарізані овочі та сир. 3. Приправте спеціями. 4. Змішайте все добре. 5. Випікайте омлет на сковороді до готовності.",
-    image: "https://example.com/images/vegetable-omelette.jpg",
-  },
-  {
-    id: 5,
-    title: "Омлет з овочами",
-    description: "Смачний омлет з соковитими овочами.",
-    ingredients: ["Яйця", "Помідори", "Перець", "Цибуля", "Сир", "Спеції"],
-    instructions:
-      "1. Розбийте яйця у миску. 2. Додайте нарізані овочі та сир. 3. Приправте спеціями. 4. Змішайте все добре. 5. Випікайте омлет на сковороді до готовності.",
-    image: "https://example.com/images/vegetable-omelette.jpg",
-  },
+
   // Додайте більше рецептів за потреби
 ];
 

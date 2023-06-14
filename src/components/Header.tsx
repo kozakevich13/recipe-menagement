@@ -16,21 +16,19 @@ const Header: React.FC = () => {
 
   return (
     <div className="header">
-      <h2 className="header-title">Header</h2>
+      <Link to="/">
+        <h2 className="header-title">Recipes</h2>
+      </Link>
       {isLoggedIn ? (
         <>
-          <button
-            type="button"
-            onClick={handleLogout}
-            className="logout-button"
-          >
+          <Link to="/favorite-recipes">
+            <button className="btn">
+              Favorite Recipes ({favoriteRecipes.length})
+            </button>
+          </Link>
+          <button type="button" onClick={handleLogout} className="btn">
             Log out
           </button>
-          <li>
-            <Link to="/favorite-recipes">
-              Favorite Recipes ({favoriteRecipes.length})
-            </Link>
-          </li>
         </>
       ) : (
         <>

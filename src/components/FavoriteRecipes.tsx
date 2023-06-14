@@ -29,7 +29,9 @@ const FavoriteRecipes: React.FC = () => {
           </ul>
           <p>{recipe.instructions}</p>
           {recipe.image && <img src={recipe.image} alt={recipe.title} />}
-          <button onClick={() => handleRemoveRecipe(recipe.id)}>Remove</button>
+          <button className="btn" onClick={() => handleRemoveRecipe(recipe.id)}>
+            Remove
+          </button>
         </div>
       ))}
     </div>

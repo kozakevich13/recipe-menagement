@@ -55,6 +55,7 @@ const RecipeList: React.FC<RecipeListProps> = ({ recipes }) => {
           {isLoggedIn ? (
             <>
               <button
+                className="btn"
                 onClick={() => handleAddRecipe(recipe)}
                 disabled={favoriteRecipes.some(
                   (favoriteRecipe: { id: number }) =>
@@ -64,6 +65,7 @@ const RecipeList: React.FC<RecipeListProps> = ({ recipes }) => {
                 Add to Favorites
               </button>
               <button
+                className="btn"
                 onClick={() => handleRemoveRecipe(recipe.id)}
                 disabled={
                   !favoriteRecipes.some(
