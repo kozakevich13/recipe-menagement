@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface Recipe {
+  id: number;
   title: string;
   description: string;
   ingredients: string[];
@@ -23,9 +24,9 @@ const favoriteRecipesSlice = createSlice({
     addRecipe: (state, action: PayloadAction<Recipe>) => {
       state.recipes.push(action.payload);
     },
-    removeRecipe: (state, action: PayloadAction<string>) => {
+    removeRecipe: (state, action: PayloadAction<number>) => {
       state.recipes = state.recipes.filter(
-        (recipe) => recipe.title !== action.payload
+        (recipe) => recipe.id !== action.payload
       );
     },
   },

@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { addRecipe, removeRecipe } from "../redux/favoriteRecipes";
 
 interface Recipe {
+  id: number;
   title: string;
   description: string;
   ingredients: string[];
@@ -25,8 +26,8 @@ const RecipeList: React.FC<RecipeListProps> = ({ recipes }) => {
     dispatch(addRecipe(recipe));
   };
 
-  const handleRemoveRecipe = (title: string) => {
-    dispatch(removeRecipe(title));
+  const handleRemoveRecipe = (id: number) => {
+    dispatch(removeRecipe(id));
   };
   return (
     <div className="recipe-list">
@@ -51,18 +52,18 @@ const RecipeList: React.FC<RecipeListProps> = ({ recipes }) => {
           <button
             onClick={() => handleAddRecipe(recipe)}
             disabled={favoriteRecipes.some(
-              (favoriteRecipe: { title: string }) =>
-                favoriteRecipe.title === recipe.title
+              (favoriteRecipe: { id: number }) =>
+                favoriteRecipe.id === recipe.id
             )}
           >
             Add to Favorites
           </button>
           <button
-            onClick={() => handleRemoveRecipe(recipe.title)}
+            onClick={() => handleRemoveRecipe(recipe.id)}
             disabled={
               !favoriteRecipes.some(
-                (favoriteRecipe: { title: string }) =>
-                  favoriteRecipe.title === recipe.title
+                (favoriteRecipe: { id: number }) =>
+                  favoriteRecipe.id === recipe.id
               )
             }
           >

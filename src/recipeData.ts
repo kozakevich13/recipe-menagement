@@ -1,4 +1,5 @@
 interface Recipe {
+  id: number;
   title: string;
   description: string;
   ingredients: string[];
@@ -8,6 +9,7 @@ interface Recipe {
 
 const recipeData: Recipe[] = [
   {
+    id: 1,
     title: "Паста з грибами",
     description: "Смачна паста з ароматними грибами.",
     ingredients: ["Паста", "Гриби", "Цибуля", "Спеції"],
@@ -16,6 +18,7 @@ const recipeData: Recipe[] = [
     image: "https://example.com/images/pasta-mushrooms.jpg",
   },
   {
+    id: 2,
     title: "Омлет з овочами",
     description: "Смачний омлет з соковитими овочами.",
     ingredients: ["Яйця", "Помідори", "Перець", "Цибуля", "Сир", "Спеції"],
@@ -24,6 +27,7 @@ const recipeData: Recipe[] = [
     image: "https://example.com/images/vegetable-omelette.jpg",
   },
   {
+    id: 3,
     title: "Омлет з овочами",
     description: "Смачний омлет з соковитими овочами.",
     ingredients: ["Яйця", "Помідори", "Перець", "Цибуля", "Сир", "Спеції"],
@@ -32,6 +36,7 @@ const recipeData: Recipe[] = [
     image: "https://example.com/images/vegetable-omelette.jpg",
   },
   {
+    id: 4,
     title: "Омлет з овочами",
     description: "Смачний омлет з соковитими овочами.",
     ingredients: ["Яйця", "Помідори", "Перець", "Цибуля", "Сир", "Спеції"],
@@ -40,6 +45,7 @@ const recipeData: Recipe[] = [
     image: "https://example.com/images/vegetable-omelette.jpg",
   },
   {
+    id: 5,
     title: "Омлет з овочами",
     description: "Смачний омлет з соковитими овочами.",
     ingredients: ["Яйця", "Помідори", "Перець", "Цибуля", "Сир", "Спеції"],

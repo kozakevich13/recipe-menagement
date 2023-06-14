@@ -6,17 +6,20 @@ const FavoriteRecipes: React.FC = () => {
   const favoriteRecipes = useSelector(
     (state: any) => state.favoriteRecipes.recipes
   );
+  console.log(favoriteRecipes);
+  console.log("sss");
+
   const dispatch = useDispatch();
 
-  const handleRemoveRecipe = (title: string) => {
-    dispatch(removeRecipe(title));
+  const handleRemoveRecipe = (id: number) => {
+    dispatch(removeRecipe(id));
   };
 
   return (
     <div>
       <h2>Favorite Recipes</h2>
       {favoriteRecipes.map((recipe: any) => (
-        <div key={recipe.title}>
+        <div key={recipe.id}>
           <h3>{recipe.title}</h3>
           <p>{recipe.description}</p>
           <ul>
@@ -26,9 +29,7 @@ const FavoriteRecipes: React.FC = () => {
           </ul>
           <p>{recipe.instructions}</p>
           {recipe.image && <img src={recipe.image} alt={recipe.title} />}
-          <button onClick={() => handleRemoveRecipe(recipe.title)}>
-            Remove
-          </button>
+          <button onClick={() => handleRemoveRecipe(recipe.id)}>Remove</button>
         </div>
       ))}
     </div>
