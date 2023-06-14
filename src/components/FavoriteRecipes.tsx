@@ -25,6 +25,8 @@ const FavoriteRecipes: React.FC = () => {
     (state: any) => state.favoriteRecipes.userRecipes
   );
   const [showAddForm, setShowAddForm] = useState(false);
+  const [showUserRecipes, setShowUserRecipes] = useState(true);
+  const [showFavoriteRecipes, setShowFavoriteRecipes] = useState(true);
 
   const [newRecipe, setNewRecipe] = useState<Recipe>({
     id: 0,
@@ -68,6 +70,14 @@ const FavoriteRecipes: React.FC = () => {
 
   const toggleAddForm = () => {
     setShowAddForm(!showAddForm);
+  };
+
+  const toggleUserRecipes = () => {
+    setShowUserRecipes(!showUserRecipes);
+  };
+
+  const toggleFavoriteRecipes = () => {
+    setShowFavoriteRecipes(!showFavoriteRecipes);
   };
 
   const handleAddRecipe = (e: React.FormEvent) => {
@@ -154,27 +164,53 @@ const FavoriteRecipes: React.FC = () => {
         </button>
       )}
       <h2>Favorite Recipes</h2>
-      <h3>Recipes Added by User</h3>
-      {userRecipes.map((recipe: any) => (
-        <div className="recipe-item" key={recipe.title}>
-          <RecipeItem key={recipe.title} recipe={recipe} />
-          {/* Відображення деталей рецепту */}
-          <button
-            className="btn"
-            onClick={() => handleRemoveUserRecipe(recipe.title)}
-          >
-            Remove
-          </button>
+      {/* Кнопка для приховування/показу списку рецептів, створених користувачем */}
+      <button className="btn" onClick={toggleUserRecipes}>
+        {showUserRecipes ? "Hide User Recipes" : "Show User Recipes"}
+      </button>
+
+      {/* Кнопка для приховування/показу списку улюблених рецептів */}
+      <button className="btn" onClick={toggleFavoriteRecipes}>
+        {showFavoriteRecipes
+          ? "Hide Favorite Recipes"
+          : "Show Favorite Recipes"}
+      </button>
+
+      {showUserRecipes && (
+        <div>
+          <h2>Recipes Added by User</h2>
+          {userRecipes.map((recipe: any) => (
+            <div className="recipe-item" key={recipe.title}>
+              <RecipeItem key={recipe.title} recipe={recipe} />
+              {/* Відображення деталей рецепту */}
+              <button
+                className="btn"
+                onClick={() => handleRemoveUserRecipe(recipe.title)}
+              >
+                Remove
+              </button>
+            </div>
+          ))}
         </div>
-      ))}
-      {favoriteRecipes.map((recipe: any, index: number) => (
-        <div className="recipe-item" key={recipe.id}>
-          <RecipeItem key={index} recipe={recipe} />
-          <button className="btn" onClick={() => handleRemoveRecipe(recipe.id)}>
-            Remove
-          </button>
+      )}
+
+      {/* Список улюблених рецептів */}
+      {showFavoriteRecipes && (
+        <div>
+          <h2>Recipes liked by User</h2>
+          {favoriteRecipes.map((recipe: any, index: number) => (
+            <div className="recipe-item" key={recipe.id}>
+              <RecipeItem key={index} recipe={recipe} />
+              <button
+                className="btn"
+                onClick={() => handleRemoveRecipe(recipe.id)}
+              >
+                Remove
+              </button>
+            </div>
+          ))}
         </div>
-      ))}
+      )}
     </div>
   );
 };
