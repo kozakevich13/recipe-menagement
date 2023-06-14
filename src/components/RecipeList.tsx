@@ -1,5 +1,5 @@
 import React from "react";
-import "../style/RecipeList.css";
+import RecipeItem from "./RecipeItem";
 import { useSelector, useDispatch } from "react-redux";
 import { addRecipe, removeRecipe } from "../redux/favoriteRecipes";
 
@@ -34,24 +34,9 @@ const RecipeList: React.FC<RecipeListProps> = ({ recipes }) => {
   return (
     <div className="recipe-list">
       {recipes.map((recipe, index) => (
-        <div key={index} className="recipe-item">
-          {recipe.image && (
-            <img
-              src={recipe.image}
-              alt={recipe.title}
-              className="recipe-image"
-            />
-          )}
-          <h3 className="recipe-title">{recipe.title}</h3>
-          <p className="recipe-description">{recipe.description}</p>
-          <ul className="recipe-ingredients">
-            {recipe.ingredients.map((ingredient, index) => (
-              <li key={index}>{ingredient}</li>
-            ))}
-          </ul>
-          <p className="recipe-instructions">{recipe.instructions}</p>
-
-          {isLoggedIn ? (
+        <div className="recipe-item">
+          <RecipeItem key={index} recipe={recipe} />
+          {isLoggedIn && (
             <>
               <button
                 className="btn"
@@ -76,8 +61,6 @@ const RecipeList: React.FC<RecipeListProps> = ({ recipes }) => {
                 Remove from Favorites
               </button>
             </>
-          ) : (
-            <></>
           )}
         </div>
       ))}

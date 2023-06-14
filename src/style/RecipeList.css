@@ -5,14 +5,6 @@
   margin-top: 20px;
 }
 
-.recipe-item {
-  background-color: #fff;
-  border: 1px solid #dbdbdb;
-  padding: 16px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease;
-}
-
 .recipe-item:hover {
   transform: translateY(-2px);
 }
@@ -40,13 +32,4 @@
 .recipe-instructions {
   margin-bottom: 12px;
   color: #555;
-}
-
-.recipe-image {
-  max-width: 200px;
-  max-height: 200px;
-  width: 100%;
-  height: auto;
-  margin-bottom: 12px;
-  border-radius: 4px;
 }
