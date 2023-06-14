@@ -1,5 +1,7 @@
 import React from "react";
 import "../style/RecipeList.css";
+import { useSelector, useDispatch } from "react-redux";
+import { addRecipe, removeRecipe } from "../redux/favoriteRecipes";
 
 interface Recipe {
   title: string;
@@ -14,6 +16,18 @@ interface RecipeListProps {
 }
 
 const RecipeList: React.FC<RecipeListProps> = ({ recipes }) => {
+  const favoriteRecipes = useSelector(
+    (state: any) => state.favoriteRecipes.recipes
+  );
+  const dispatch = useDispatch();
+
+  const handleAddRecipe = (recipe: Recipe) => {
+    dispatch(addRecipe(recipe));
+  };
+
+  const handleRemoveRecipe = (title: string) => {
+    dispatch(removeRecipe(title));
+  };
   return (
     <div className="recipe-list">
       <h2 className="recipe-list-title">Загальний список рецептів</h2>
@@ -34,6 +48,26 @@ const RecipeList: React.FC<RecipeListProps> = ({ recipes }) => {
               className="recipe-image"
             />
           )}
+          <button
+            onClick={() => handleAddRecipe(recipe)}
+            disabled={favoriteRecipes.some(
+              (favoriteRecipe: { title: string }) =>
+                favoriteRecipe.title === recipe.title
+            )}
+          >
+            Add to Favorites
+          </button>
+          <button
+            onClick={() => handleRemoveRecipe(recipe.title)}
+            disabled={
+              !favoriteRecipes.some(
+                (favoriteRecipe: { title: string }) =>
+                  favoriteRecipe.title === recipe.title
+              )
+            }
+          >
+            Remove from Favorites
+          </button>
         </div>
       ))}
     </div>
