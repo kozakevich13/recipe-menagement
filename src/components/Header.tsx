@@ -32,11 +32,12 @@ const Header: React.FC = () => {
         </>
       ) : (
         <>
-          <Link to="/login" className="nav-link">
-            Авторизація
+          <Link to="/login">
+            <button className="btn">Авторизація</button>
           </Link>
-          <Link to="/register" className="nav-link">
-            Реєстрація
+          <Link to="/register">
+            {" "}
+            <button className="btn">Реєстрація</button>
           </Link>
         </>
       )}

@@ -33,9 +33,15 @@ const RecipeList: React.FC<RecipeListProps> = ({ recipes }) => {
   };
   return (
     <div className="recipe-list">
-      <h2 className="recipe-list-title">Загальний список рецептів</h2>
       {recipes.map((recipe, index) => (
         <div key={index} className="recipe-item">
+          {recipe.image && (
+            <img
+              src={recipe.image}
+              alt={recipe.title}
+              className="recipe-image"
+            />
+          )}
           <h3 className="recipe-title">{recipe.title}</h3>
           <p className="recipe-description">{recipe.description}</p>
           <ul className="recipe-ingredients">
@@ -44,13 +50,6 @@ const RecipeList: React.FC<RecipeListProps> = ({ recipes }) => {
             ))}
           </ul>
           <p className="recipe-instructions">{recipe.instructions}</p>
-          {recipe.image && (
-            <img
-              src={recipe.image}
-              alt={recipe.title}
-              className="recipe-image"
-            />
-          )}
 
           {isLoggedIn ? (
             <>
