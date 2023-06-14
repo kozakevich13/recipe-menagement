@@ -11,10 +11,12 @@ interface Recipe {
 
 interface FavoriteRecipesState {
   recipes: Recipe[];
+  userRecipes: Recipe[];
 }
 
 const initialState: FavoriteRecipesState = {
   recipes: [],
+  userRecipes: [],
 };
 
 const favoriteRecipesSlice = createSlice({
@@ -29,8 +31,17 @@ const favoriteRecipesSlice = createSlice({
         (recipe) => recipe.id !== action.payload
       );
     },
+    addUserRecipe: (state, action: PayloadAction<Recipe>) => {
+      state.userRecipes.push(action.payload);
+    },
+    removeUserRecipe: (state, action: PayloadAction<string>) => {
+      state.userRecipes = state.userRecipes.filter(
+        (recipe) => recipe.title !== action.payload
+      );
+    },
   },
 });
 
-export const { addRecipe, removeRecipe } = favoriteRecipesSlice.actions;
+export const { addRecipe, removeRecipe, addUserRecipe, removeUserRecipe } =
+  favoriteRecipesSlice.actions;
 export default favoriteRecipesSlice.reducer;
