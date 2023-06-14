@@ -102,6 +102,7 @@ const FavoriteRecipes: React.FC = () => {
                   name="title"
                   value={newRecipe.title}
                   onChange={handleInputChange}
+                  className="form-input"
                 />
               </label>
               <label>
@@ -110,6 +111,7 @@ const FavoriteRecipes: React.FC = () => {
                   name="description"
                   value={newRecipe.description}
                   onChange={handleInputChange}
+                  className="form-input"
                 />
               </label>
               <label>
@@ -118,6 +120,7 @@ const FavoriteRecipes: React.FC = () => {
                   name="ingredients"
                   value={newRecipe.ingredients.join("\n")}
                   onChange={handleInputChange}
+                  className="form-input"
                 />
               </label>
               <label>
@@ -126,6 +129,7 @@ const FavoriteRecipes: React.FC = () => {
                   name="instructions"
                   value={newRecipe.instructions}
                   onChange={handleInputChange}
+                  className="form-input"
                 />
               </label>
               <label>
@@ -135,6 +139,7 @@ const FavoriteRecipes: React.FC = () => {
                   name="image"
                   value={newRecipe.image}
                   onChange={handleInputChange}
+                  className="form-input"
                 />
               </label>
               <button className="btn" type="submit" onClick={handleAddRecipe}>
