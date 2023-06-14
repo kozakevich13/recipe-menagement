@@ -6,6 +6,7 @@ import {
   addUserRecipe,
 } from "../redux/favoriteRecipes";
 import RecipeItem from "./RecipeItem";
+import "../style/FavoriteRecipes.css";
 
 interface Recipe {
   id: number;
@@ -87,59 +88,65 @@ const FavoriteRecipes: React.FC = () => {
     <div>
       <h3>Add New Recipe</h3>
       {showAddForm ? (
-        <div>
-          {/* Форма додавання нового рецепту */}
-          <button onClick={toggleAddForm}>Cancel</button>
-          <form onSubmit={handleAddRecipe}>
-            <label>
-              Title:
-              <input
-                type="text"
-                name="title"
-                value={newRecipe.title}
-                onChange={handleInputChange}
-              />
-            </label>
-            <label>
-              Description:
-              <textarea
-                name="description"
-                value={newRecipe.description}
-                onChange={handleInputChange}
-              />
-            </label>
-            <label>
-              Ingredients:
-              <textarea
-                name="ingredients"
-                value={newRecipe.ingredients.join("\n")}
-                onChange={handleInputChange}
-              />
-            </label>
-            <label>
-              Instructions:
-              <textarea
-                name="instructions"
-                value={newRecipe.instructions}
-                onChange={handleInputChange}
-              />
-            </label>
-            <label>
-              Image URL:
-              <input
-                type="text"
-                name="image"
-                value={newRecipe.image}
-                onChange={handleInputChange}
-              />
-            </label>
-            <button type="submit" onClick={handleAddRecipe}>
-              Add Recipe
+        <div className="overlay">
+          <div className="form-container">
+            {/* Форма додавання нового рецепту */}
+            <button className="btn" onClick={toggleAddForm}>
+              Cancel
             </button>
-          </form>
+            <form onSubmit={handleAddRecipe}>
+              <label>
+                Title:
+                <input
+                  type="text"
+                  name="title"
+                  value={newRecipe.title}
+                  onChange={handleInputChange}
+                />
+              </label>
+              <label>
+                Description:
+                <textarea
+                  name="description"
+                  value={newRecipe.description}
+                  onChange={handleInputChange}
+                />
+              </label>
+              <label>
+                Ingredients:
+                <textarea
+                  name="ingredients"
+                  value={newRecipe.ingredients.join("\n")}
+                  onChange={handleInputChange}
+                />
+              </label>
+              <label>
+                Instructions:
+                <textarea
+                  name="instructions"
+                  value={newRecipe.instructions}
+                  onChange={handleInputChange}
+                />
+              </label>
+              <label>
+                Image URL:
+                <input
+                  type="text"
+                  name="image"
+                  value={newRecipe.image}
+                  onChange={handleInputChange}
+                />
+              </label>
+              <button className="btn" type="submit" onClick={handleAddRecipe}>
+                Add Recipe
+              </button>
+            </form>
+          </div>
         </div>
       ) : (
-        <button onClick={toggleAddForm}>Add Recipe</button>
+        <button className="btn" onClick={toggleAddForm}>
+          Add Recipe
+        </button>
       )}
       <h2>Favorite Recipes</h2>
       <h3>Recipes Added by User</h3>
@@ -147,7 +154,10 @@ const FavoriteRecipes: React.FC = () => {
         <div className="recipe-item" key={recipe.title}>
           <RecipeItem key={recipe.title} recipe={recipe} />
           {/* Відображення деталей рецепту */}
-          <button onClick={() => handleRemoveUserRecipe(recipe.title)}>
+          <button
+            className="btn"
+            onClick={() => handleRemoveUserRecipe(recipe.title)}
+          >
             Remove
           </button>
         </div>
