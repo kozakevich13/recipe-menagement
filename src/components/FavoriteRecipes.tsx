@@ -23,6 +23,7 @@ const FavoriteRecipes: React.FC = () => {
   const userRecipes = useSelector(
     (state: any) => state.favoriteRecipes.userRecipes
   );
+  const [showAddForm, setShowAddForm] = useState(false);
 
   const [newRecipe, setNewRecipe] = useState<Recipe>({
     id: 0,
@@ -64,8 +65,12 @@ const FavoriteRecipes: React.FC = () => {
     }
   };
 
-  const handleAddUserRecipe = (e: React.FormEvent) => {
-    e.preventDefault();
+  const toggleAddForm = () => {
+    setShowAddForm(!showAddForm);
+  };
+
+  const handleAddRecipe = (e: React.FormEvent) => {
+    // Логіка додавання нового рецепту
     dispatch(addUserRecipe(newRecipe));
     setNewRecipe({
       id: 0,
@@ -75,56 +80,67 @@ const FavoriteRecipes: React.FC = () => {
       instructions: "",
       image: "",
     });
+    toggleAddForm();
   };
 
   return (
     <div>
       <h3>Add New Recipe</h3>
-      <form onSubmit={handleAddUserRecipe}>
-        <label>
-          Title:
-          <input
-            type="text"
-            name="title"
-            value={newRecipe.title}
-            onChange={handleInputChange}
-          />
-        </label>
-        <label>
-          Description:
-          <textarea
-            name="description"
-            value={newRecipe.description}
-            onChange={handleInputChange}
-          />
-        </label>
-        <label>
-          Ingredients:
-          <textarea
-            name="ingredients"
-            value={newRecipe.ingredients.join("\n")}
-            onChange={handleInputChange}
-          />
-        </label>
-        <label>
-          Instructions:
-          <textarea
-            name="instructions"
-            value={newRecipe.instructions}
-            onChange={handleInputChange}
-          />
-        </label>
-        <label>
-          Image URL:
-          <input
-            type="text"
-            name="image"
-            value={newRecipe.image}
-            onChange={handleInputChange}
-          />
-        </label>
-        <button type="submit">Add Recipe</button>
-      </form>
+      {showAddForm ? (
+        <div>
+          {/* Форма додавання нового рецепту */}
+          <button onClick={toggleAddForm}>Cancel</button>
+          <form onSubmit={handleAddRecipe}>
+            <label>
+              Title:
+              <input
+                type="text"
+                name="title"
+                value={newRecipe.title}
+                onChange={handleInputChange}
+              />
+            </label>
+            <label>
+              Description:
+              <textarea
+                name="description"
+                value={newRecipe.description}
+                onChange={handleInputChange}
+              />
+            </label>
+            <label>
+              Ingredients:
+              <textarea
+                name="ingredients"
+                value={newRecipe.ingredients.join("\n")}
+                onChange={handleInputChange}
+              />
+            </label>
+            <label>
+              Instructions:
+              <textarea
+                name="instructions"
+                value={newRecipe.instructions}
+                onChange={handleInputChange}
+              />
+            </label>
+            <label>
+              Image URL:
+              <input
+                type="text"
+                name="image"
+                value={newRecipe.image}
+                onChange={handleInputChange}
+              />
+            </label>
+            <button type="submit" onClick={handleAddRecipe}>
+              Add Recipe
+            </button>
+          </form>
+        </div>
+      ) : (
+        <button onClick={toggleAddForm}>Add Recipe</button>
+      )}
       <h2>Favorite Recipes</h2>
       <h3>Recipes Added by User</h3>
       {userRecipes.map((recipe: any) => (
