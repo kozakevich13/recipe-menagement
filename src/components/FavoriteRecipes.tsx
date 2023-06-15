@@ -30,7 +30,7 @@ const FavoriteRecipes: React.FC = () => {
   const [editRecipe, setEditRecipe] = useState<Recipe | null>(null);
   const [showUserRecipes, setShowUserRecipes] = useState(true);
   const [showFavoriteRecipes, setShowFavoriteRecipes] = useState(true);
-  const [userName, setUserName] = useState(localStorage.getItem("userEmail"));
+  const userName = localStorage.getItem("userEmail");
   const [searchQuery, setSearchQuery] = useState(""); // Для збереження рядка пошуку
 
   const [newRecipe, setNewRecipe] = useState<Recipe>({
