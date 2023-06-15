@@ -68,3 +68,13 @@
   margin-bottom: 12px;
   border-radius: 4px;
 }
+
+.search-input {
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 300px;
+  margin-bottom: 16px;
+  margin-left: 10px;
+}
