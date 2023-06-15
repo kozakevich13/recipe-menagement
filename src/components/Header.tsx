@@ -13,19 +13,19 @@ const Header: React.FC = () => {
 
   const handleLogout = () => {
     localStorage.clear();
-    navigate("/login");
+    navigate("/recipe-menagement/login");
   };
 
   return (
     <div className="header">
-      <Link to="/">
+      <Link to="/recipe-menagement/">
         <button className="btn">
           <h2 className="header-title">Всі рецепти</h2>
         </button>
       </Link>
       {isLoggedIn ? (
         <>
-          <Link to="/favorite-recipes">
+          <Link to="/recipe-menagement/favorite-recipes">
             <button className="btn">
               Вподобані рецепти ({favoriteRecipes.length})
             </button>
@@ -36,10 +36,10 @@ const Header: React.FC = () => {
         </>
       ) : (
         <>
-          <Link to="/login">
+          <Link to="/recipe-menagement/login">
             <button className="btn">Авторизація</button>
           </Link>
-          <Link to="/register">
+          <Link to="/recipe-menagement/register">
             {" "}
             <button className="btn">Реєстрація</button>
           </Link>

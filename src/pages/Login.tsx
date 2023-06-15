@@ -15,7 +15,7 @@ const Login: React.FC = () => {
     if (storedPassword && storedPassword === password) {
       localStorage.setItem("isLoggedIn", "true");
       localStorage.setItem("userEmail", email);
-      navigate("/dashboard");
+      navigate("/recipe-menagement/dashboard");
     } else {
       setError("Неправильні дані авторизації");
     }

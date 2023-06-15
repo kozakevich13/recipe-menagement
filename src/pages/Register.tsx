@@ -20,7 +20,7 @@ const Register: React.FC = () => {
       localStorage.setItem(email, password);
       localStorage.setItem("isLoggedIn", "true");
       localStorage.setItem("userEmail", email);
-      navigate("/dashboard"); // Замість window.location.href
+      navigate("/recipe-menagement/dashboard"); // Замість window.location.href
     }
   };
 
