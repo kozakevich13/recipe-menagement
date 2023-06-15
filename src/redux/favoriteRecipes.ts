@@ -40,12 +40,13 @@ const favoriteRecipesSlice = createSlice({
       );
     },
     updateUserRecipe(state, action: PayloadAction<Recipe>) {
-      const { title } = action.payload;
-      const index = state.userRecipes.findIndex(
-        (recipe) => recipe.title === title
-      );
+      const { id, ...updatedFields } = action.payload;
+      const index = state.userRecipes.findIndex((recipe) => recipe.id === id);
       if (index !== -1) {
-        state.userRecipes[index] = { ...action.payload };
+        state.userRecipes[index] = {
+          ...state.userRecipes[index],
+          ...updatedFields,
+        };
       }
     },
   },

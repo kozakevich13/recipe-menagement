@@ -90,7 +90,8 @@ const FavoriteRecipes: React.FC = () => {
 
   const handleAddRecipe = (e: React.FormEvent) => {
     // Логіка додавання нового рецепту
-    dispatch(addUserRecipe(newRecipe));
+    const uniqueId = Date.now();
+    dispatch(addUserRecipe({ ...newRecipe, id: uniqueId }));
     setNewRecipe({
       id: 0,
       title: "",
@@ -184,7 +185,6 @@ const FavoriteRecipes: React.FC = () => {
           Add Recipe
         </button>
       )}
-
       {showEditForm && editRecipe && (
         <div>
           <h2>Edit Recipe</h2>
@@ -252,20 +252,18 @@ const FavoriteRecipes: React.FC = () => {
       <button className="btn" onClick={toggleUserRecipes}>
         {showUserRecipes ? "Hide User Recipes" : "Show User Recipes"}
       </button>
-
       {/* Кнопка для приховування/показу списку улюблених рецептів */}
       <button className="btn" onClick={toggleFavoriteRecipes}>
         {showFavoriteRecipes
           ? "Hide Favorite Recipes"
           : "Show Favorite Recipes"}
       </button>
-
       {showUserRecipes && (
         <div>
           <h2>Recipes Added by {userName}</h2>
           {userRecipes.map((recipe: any) => (
-            <div className="recipe-item" key={recipe.title}>
-              <RecipeItem key={recipe.title} recipe={recipe} />
+            <div className="recipe-item" key={recipe.id}>
+              <RecipeItem key={recipe.id} recipe={recipe} />
               {/* Відображення деталей рецепту */}
               <button
                 className="btn"
@@ -278,14 +276,13 @@ const FavoriteRecipes: React.FC = () => {
           ))}
         </div>
       )}
-
       {/* Список улюблених рецептів */}
       {showFavoriteRecipes && (
         <div>
           <h2>Recipes liked by {userName}</h2>
           {favoriteRecipes.map((recipe: any, index: number) => (
             <div className="recipe-item" key={recipe.id}>
-              <RecipeItem key={index} recipe={recipe} />
+              <RecipeItem key={recipe.id} recipe={recipe} />
               <button
                 className="btn"
                 onClick={() => handleRemoveRecipe(recipe.id)}
