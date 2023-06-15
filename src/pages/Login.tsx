@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const handleLogin = () => {
     // Отримання пароля з сесійного сховища
@@ -13,7 +15,7 @@ const Login: React.FC = () => {
     if (storedPassword && storedPassword === password) {
       localStorage.setItem("isLoggedIn", "true");
       localStorage.setItem("userEmail", email);
-      window.location.href = "/dashboard";
+      navigate("/dashboard");
     } else {
       setError("Неправильні дані авторизації");
     }

@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Register: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const handleRegister = () => {
     // Перевірка наявності введеного email у сесійному сховищі
@@ -18,7 +20,7 @@ const Register: React.FC = () => {
       localStorage.setItem(email, password);
       localStorage.setItem("isLoggedIn", "true");
       localStorage.setItem("userEmail", email);
-      window.location.href = "/dashboard";
+      navigate("/dashboard"); // Замість window.location.href
     }
   };
 
