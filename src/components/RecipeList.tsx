@@ -74,7 +74,7 @@ const RecipeList: React.FC<RecipeListProps> = ({ recipes }) => {
                       favoriteRecipe.id === recipe.id
                   )}
                 >
-                  Add to Favorites
+                  Додати до вподобаних
                 </button>
                 <button
                   className="btn"
@@ -86,7 +86,7 @@ const RecipeList: React.FC<RecipeListProps> = ({ recipes }) => {
                     )
                   }
                 >
-                  Remove from Favorites
+                  Видали з вподобаних
                 </button>
               </>
             )}

@@ -135,16 +135,16 @@ const FavoriteRecipes: React.FC = () => {
 
   return (
     <div>
-      <h3>Add New Recipe</h3>
+      <h3>Додати новий рецепт</h3>
       {showAddForm ? (
         <div className="overlay">
           <div className="form-container">
             <button className="btn" onClick={toggleAddForm}>
-              Cancel
+              Сказувати
             </button>
             <form onSubmit={handleAddRecipe}>
               <label>
-                Title:
+                Назва:
                 <input
                   type="text"
                   name="title"
@@ -154,7 +154,7 @@ const FavoriteRecipes: React.FC = () => {
                 />
               </label>
               <label>
-                Description:
+                Опис:
                 <textarea
                   name="description"
                   value={newRecipe.description}
@@ -163,7 +163,7 @@ const FavoriteRecipes: React.FC = () => {
                 />
               </label>
               <label>
-                Ingredients:
+                Інградієнти:
                 <textarea
                   name="ingredients"
                   value={newRecipe.ingredients.join("\n")}
@@ -172,7 +172,7 @@ const FavoriteRecipes: React.FC = () => {
                 />
               </label>
               <label>
-                Instructions:
+                Інструкція приготування:
                 <textarea
                   name="instructions"
                   value={newRecipe.instructions}
@@ -181,7 +181,7 @@ const FavoriteRecipes: React.FC = () => {
                 />
               </label>
               <label>
-                Image URL:
+                Фото URL:
                 <input
                   type="text"
                   name="image"
@@ -191,20 +191,20 @@ const FavoriteRecipes: React.FC = () => {
                 />
               </label>
               <button className="btn" type="submit" onClick={handleAddRecipe}>
-                Add Recipe
+                Додати рецепт
               </button>
             </form>
           </div>
         </div>
       ) : (
         <button className="btn" onClick={toggleAddForm}>
-          Add Recipe
+          Додати рецепт
         </button>
       )}
       {showEditForm && editRecipe && (
         <div className="overlay">
           <div className="form-container">
-            <h2>Edit Recipe</h2>
+            <h2>Редагувати рецепт</h2>
             <RecipeForm
               recipe={editRecipe}
               handleInputChange={(e) =>
@@ -215,24 +215,26 @@ const FavoriteRecipes: React.FC = () => {
           </div>
         </div>
       )}
-      <h2>Favorite Recipes</h2>
+      <h2>Вподобані рецепти</h2>
       <button className="btn" onClick={toggleUserRecipes}>
-        {showUserRecipes ? "Hide User Recipes" : "Show User Recipes"}
+        {showUserRecipes
+          ? "Сховати рецепти користувача"
+          : "Показати рецепти користувача"}
       </button>
       <button className="btn" onClick={toggleFavoriteRecipes}>
         {showFavoriteRecipes
-          ? "Hide Favorite Recipes"
-          : "Show Favorite Recipes"}
+          ? "Сховати вподобані рецепти"
+          : "Показати вподобані рецепти"}
       </button>
       <input
         type="text"
-        placeholder="Search recipes..."
+        placeholder="пошук рецепта..."
         onChange={handleSearch}
         className="search-input"
       />
       {showUserRecipes && (
         <div>
-          <h2>Recipes Added by {userName}</h2>
+          <h2>Рецепти додані користувачем {userName}</h2>
           {filteredUserRecipes.map((recipe: any) => (
             <div className="recipe-item" key={recipe.id}>
               <RecipeItem key={recipe.id} recipe={recipe} />
@@ -240,10 +242,10 @@ const FavoriteRecipes: React.FC = () => {
                 className="btn"
                 onClick={() => handleRemoveUserRecipe(recipe.title)}
               >
-                Remove
+                Видалити
               </button>
               <button className="btn" onClick={() => handleEditRecipe(recipe)}>
-                Edit
+                Редагувати
               </button>
             </div>
           ))}
@@ -251,7 +253,7 @@ const FavoriteRecipes: React.FC = () => {
       )}
       {showFavoriteRecipes && (
         <div>
-          <h2>Recipes liked by {userName}</h2>
+          <h2>Рецепти вподобані користувачем {userName}</h2>
           {filteredFavoriteRecipes.map((recipe: any, index: number) => (
             <div className="recipe-item" key={recipe.id}>
               <RecipeItem key={recipe.id} recipe={recipe} />
@@ -259,7 +261,7 @@ const FavoriteRecipes: React.FC = () => {
                 className="btn"
                 onClick={() => handleRemoveRecipe(recipe.id)}
               >
-                Remove
+                Видалити
               </button>
             </div>
           ))}

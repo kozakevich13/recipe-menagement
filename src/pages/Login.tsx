@@ -41,7 +41,7 @@ const Login: React.FC = () => {
           />
         </label>
         <br />
-        <button type="button" onClick={handleLogin}>
+        <button className="btn" type="button" onClick={handleLogin}>
           Увійти
         </button>
         {error && <p>{error}</p>}

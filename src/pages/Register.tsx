@@ -44,7 +44,7 @@ const Register: React.FC = () => {
           />
         </label>
         <br />
-        <button type="button" onClick={handleRegister}>
+        <button className="btn" type="button" onClick={handleRegister}>
           Зареєструватися
         </button>
         {error && <p>{error}</p>}
