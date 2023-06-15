@@ -7,6 +7,7 @@ import {
   updateUserRecipe,
 } from "../redux/favoriteRecipes";
 import RecipeItem from "./RecipeItem";
+import RecipeForm from "./RecipeForm";
 import "../style/FavoriteRecipes.css";
 
 interface Recipe {
@@ -204,77 +205,13 @@ const FavoriteRecipes: React.FC = () => {
         <div className="overlay">
           <div className="form-container">
             <h2>Edit Recipe</h2>
-            <form>
-              <label>
-                Title:
-                <input
-                  className="form-input"
-                  type="text"
-                  value={editRecipe.title}
-                  onChange={(e) =>
-                    setEditRecipe({ ...editRecipe, title: e.target.value })
-                  }
-                />
-              </label>
-              <label>
-                Description:
-                <textarea
-                  className="form-input"
-                  value={editRecipe.description}
-                  onChange={(e) =>
-                    setEditRecipe({
-                      ...editRecipe,
-                      description: e.target.value,
-                    })
-                  }
-                />
-              </label>
-              <label>
-                Ingredients (comma-separated):
-                <input
-                  className="form-input"
-                  type="text"
-                  value={editRecipe.ingredients.join(",")}
-                  onChange={(e) =>
-                    setEditRecipe({
-                      ...editRecipe,
-                      ingredients: e.target.value.split(","),
-                    })
-                  }
-                />
-              </label>
-              <label>
-                Instructions:
-                <textarea
-                  className="form-input"
-                  value={editRecipe.instructions}
-                  onChange={(e) =>
-                    setEditRecipe({
-                      ...editRecipe,
-                      instructions: e.target.value,
-                    })
-                  }
-                />
-              </label>
-              <label>
-                Image URL:
-                <input
-                  className="form-input"
-                  type="text"
-                  value={editRecipe.image}
-                  onChange={(e) =>
-                    setEditRecipe({ ...editRecipe, image: e.target.value })
-                  }
-                />
-              </label>
-              <button
-                className="btn"
-                type="submit"
-                onClick={handleUpdateRecipe}
-              >
-                Update Recipe
-              </button>
-            </form>
+            <RecipeForm
+              recipe={editRecipe}
+              handleInputChange={(e) =>
+                setEditRecipe({ ...editRecipe, title: e.target.value })
+              }
+              handleSubmit={handleUpdateRecipe}
+            />
           </div>
         </div>
       )}
