@@ -1,6 +1,6 @@
 import React from "react";
 import recipeData from "../recipeData";
-import RecipeList from "./RecipeList";
+import RecipeList from "../components/RecipeList";
 
 const Home: React.FC = () => {
   return (

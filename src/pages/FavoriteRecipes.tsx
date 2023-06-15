@@ -6,8 +6,8 @@ import {
   addUserRecipe,
   updateUserRecipe,
 } from "../redux/favoriteRecipes";
-import RecipeItem from "./RecipeItem";
-import RecipeForm from "./RecipeForm";
+import RecipeItem from "../components/RecipeItem";
+import RecipeForm from "../components/RecipeForm";
 import "../style/FavoriteRecipes.css";
 
 interface Recipe {

@@ -1,11 +1,11 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Login from "./components/Login";
-import Register from "./components/Register";
-import Dashboard from "./components/Dashboard";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Dashboard from "./pages/Dashboard";
 import Header from "./components/Header";
-import Home from "./components/Home";
-import FavoriteRecipes from "./components/FavoriteRecipes";
+import Home from "./pages/Home";
+import FavoriteRecipes from "./pages/FavoriteRecipes";
 import "./App.css";
 
 const App: React.FC = () => {
