@@ -39,9 +39,23 @@ const favoriteRecipesSlice = createSlice({
         (recipe) => recipe.title !== action.payload
       );
     },
+    updateUserRecipe(state, action: PayloadAction<Recipe>) {
+      const { title } = action.payload;
+      const index = state.userRecipes.findIndex(
+        (recipe) => recipe.title === title
+      );
+      if (index !== -1) {
+        state.userRecipes[index] = { ...action.payload };
+      }
+    },
   },
 });
 
-export const { addRecipe, removeRecipe, addUserRecipe, removeUserRecipe } =
-  favoriteRecipesSlice.actions;
+export const {
+  addRecipe,
+  removeRecipe,
+  addUserRecipe,
+  removeUserRecipe,
+  updateUserRecipe,
+} = favoriteRecipesSlice.actions;
 export default favoriteRecipesSlice.reducer;

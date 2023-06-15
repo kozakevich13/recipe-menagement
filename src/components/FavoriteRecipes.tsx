@@ -4,6 +4,7 @@ import {
   removeRecipe,
   removeUserRecipe,
   addUserRecipe,
+  updateUserRecipe,
 } from "../redux/favoriteRecipes";
 import RecipeItem from "./RecipeItem";
 import "../style/FavoriteRecipes.css";
@@ -25,6 +26,8 @@ const FavoriteRecipes: React.FC = () => {
     (state: any) => state.favoriteRecipes.userRecipes
   );
   const [showAddForm, setShowAddForm] = useState(false);
+  const [showEditForm, setShowEditForm] = useState(false);
+  const [editRecipe, setEditRecipe] = useState<Recipe | null>(null);
   const [showUserRecipes, setShowUserRecipes] = useState(true);
   const [showFavoriteRecipes, setShowFavoriteRecipes] = useState(true);
   const userName = localStorage.getItem("userEmail");
@@ -73,6 +76,10 @@ const FavoriteRecipes: React.FC = () => {
     setShowAddForm(!showAddForm);
   };
 
+  const toggleEditForm = () => {
+    setShowEditForm(!showEditForm);
+  };
+
   const toggleUserRecipes = () => {
     setShowUserRecipes(!showUserRecipes);
   };
@@ -93,6 +100,19 @@ const FavoriteRecipes: React.FC = () => {
       image: "",
     });
     toggleAddForm();
+  };
+
+  const handleEditRecipe = (recipe: Recipe) => {
+    setEditRecipe(recipe);
+    toggleEditForm();
+  };
+
+  const handleUpdateRecipe = () => {
+    // Логіка оновлення рецепту
+    if (editRecipe) {
+      dispatch(updateUserRecipe(editRecipe));
+    }
+    toggleEditForm();
   };
 
   return (
@@ -164,6 +184,69 @@ const FavoriteRecipes: React.FC = () => {
           Add Recipe
         </button>
       )}
+
+      {showEditForm && editRecipe && (
+        <div>
+          <h2>Edit Recipe</h2>
+          <form>
+            {/* Форма для редагування рецепту зі значеннями в editRecipe */}
+            <label>
+              Title:
+              <input
+                type="text"
+                value={editRecipe.title}
+                onChange={(e) =>
+                  setEditRecipe({ ...editRecipe, title: e.target.value })
+                }
+              />
+            </label>
+            <label>
+              Description:
+              <textarea
+                value={editRecipe.description}
+                onChange={(e) =>
+                  setEditRecipe({ ...editRecipe, description: e.target.value })
+                }
+              />
+            </label>
+            <label>
+              Ingredients (comma-separated):
+              <input
+                type="text"
+                value={editRecipe.ingredients.join(",")}
+                onChange={(e) =>
+                  setEditRecipe({
+                    ...editRecipe,
+                    ingredients: e.target.value.split(","),
+                  })
+                }
+              />
+            </label>
+            <label>
+              Instructions:
+              <textarea
+                value={editRecipe.instructions}
+                onChange={(e) =>
+                  setEditRecipe({ ...editRecipe, instructions: e.target.value })
+                }
+              />
+            </label>
+            <label>
+              Image URL:
+              <input
+                type="text"
+                value={editRecipe.image}
+                onChange={(e) =>
+                  setEditRecipe({ ...editRecipe, image: e.target.value })
+                }
+              />
+            </label>
+            <button type="submit" onClick={handleUpdateRecipe}>
+              Update Recipe
+            </button>
+          </form>
+        </div>
+      )}
       <h2>Favorite Recipes</h2>
       {/* Кнопка для приховування/показу списку рецептів, створених користувачем */}
       <button className="btn" onClick={toggleUserRecipes}>
@@ -190,6 +273,7 @@ const FavoriteRecipes: React.FC = () => {
               >
                 Remove
               </button>
+              <button onClick={() => handleEditRecipe(recipe)}>Edit</button>
             </div>
           ))}
         </div>
@@ -208,6 +292,7 @@ const FavoriteRecipes: React.FC = () => {
               >
                 Remove
               </button>
+              <button onClick={() => handleEditRecipe(recipe)}>Edit</button>
             </div>
           ))}
         </div>
