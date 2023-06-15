@@ -31,7 +31,7 @@ const FavoriteRecipes: React.FC = () => {
   const [showUserRecipes, setShowUserRecipes] = useState(true);
   const [showFavoriteRecipes, setShowFavoriteRecipes] = useState(true);
   const userName = localStorage.getItem("userEmail");
-  const [searchQuery, setSearchQuery] = useState(""); // Для збереження рядка пошуку
+  const [searchQuery, setSearchQuery] = useState("");
 
   const [newRecipe, setNewRecipe] = useState<Recipe>({
     id: 0,
@@ -58,14 +58,12 @@ const FavoriteRecipes: React.FC = () => {
     const { name, value } = e.target;
 
     if (name === "ingredients") {
-      // Для поля 'ingredients' розбиваємо рядок на масив речень
       const ingredientsArray = value.split("\n");
       setNewRecipe((prevRecipe) => ({
         ...prevRecipe,
         [name]: ingredientsArray,
       }));
     } else {
-      // Для інших полів просто оновлюємо значення
       setNewRecipe((prevRecipe) => ({
         ...prevRecipe,
         [name]: value,
@@ -90,7 +88,6 @@ const FavoriteRecipes: React.FC = () => {
   };
 
   const handleAddRecipe = (e: React.FormEvent) => {
-    // Логіка додавання нового рецепту
     const uniqueId = Date.now();
     dispatch(addUserRecipe({ ...newRecipe, id: uniqueId }));
     setNewRecipe({
@@ -110,7 +107,6 @@ const FavoriteRecipes: React.FC = () => {
   };
 
   const handleUpdateRecipe = () => {
-    // Логіка оновлення рецепту
     if (editRecipe) {
       dispatch(updateUserRecipe(editRecipe));
     }
@@ -142,7 +138,6 @@ const FavoriteRecipes: React.FC = () => {
       {showAddForm ? (
         <div className="overlay">
           <div className="form-container">
-            {/* Форма додавання нового рецепту */}
             <button className="btn" onClick={toggleAddForm}>
               Cancel
             </button>
@@ -210,7 +205,6 @@ const FavoriteRecipes: React.FC = () => {
           <div className="form-container">
             <h2>Edit Recipe</h2>
             <form>
-              {/* Форма для редагування рецепту зі значеннями в editRecipe */}
               <label>
                 Title:
                 <input
@@ -285,11 +279,9 @@ const FavoriteRecipes: React.FC = () => {
         </div>
       )}
       <h2>Favorite Recipes</h2>
-      {/* Кнопка для приховування/показу списку рецептів, створених користувачем */}
       <button className="btn" onClick={toggleUserRecipes}>
         {showUserRecipes ? "Hide User Recipes" : "Show User Recipes"}
       </button>
-      {/* Кнопка для приховування/показу списку улюблених рецептів */}
       <button className="btn" onClick={toggleFavoriteRecipes}>
         {showFavoriteRecipes
           ? "Hide Favorite Recipes"
@@ -307,7 +299,6 @@ const FavoriteRecipes: React.FC = () => {
           {filteredUserRecipes.map((recipe: any) => (
             <div className="recipe-item" key={recipe.id}>
               <RecipeItem key={recipe.id} recipe={recipe} />
-              {/* Відображення деталей рецепту */}
               <button
                 className="btn"
                 onClick={() => handleRemoveUserRecipe(recipe.title)}
@@ -321,7 +312,6 @@ const FavoriteRecipes: React.FC = () => {
           ))}
         </div>
       )}
-      {/* Список улюблених рецептів */}
       {showFavoriteRecipes && (
         <div>
           <h2>Recipes liked by {userName}</h2>
