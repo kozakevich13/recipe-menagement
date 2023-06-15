@@ -30,7 +30,8 @@ const FavoriteRecipes: React.FC = () => {
   const [editRecipe, setEditRecipe] = useState<Recipe | null>(null);
   const [showUserRecipes, setShowUserRecipes] = useState(true);
   const [showFavoriteRecipes, setShowFavoriteRecipes] = useState(true);
-  const userName = localStorage.getItem("userEmail");
+  const [userName, setUserName] = useState(localStorage.getItem("userEmail"));
+  const [searchQuery, setSearchQuery] = useState(""); // Для збереження рядка пошуку
 
   const [newRecipe, setNewRecipe] = useState<Recipe>({
     id: 0,
@@ -115,6 +116,25 @@ const FavoriteRecipes: React.FC = () => {
     }
     toggleEditForm();
   };
+
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(e.target.value);
+  };
+
+  const filterRecipes = (recipes: Recipe[], query: string) => {
+    return recipes.filter((recipe) => {
+      const titleMatch = recipe.title
+        .toLowerCase()
+        .includes(query.toLowerCase());
+      const ingredientsMatch = recipe.ingredients.some((ingredient) =>
+        ingredient.toLowerCase().includes(query.toLowerCase())
+      );
+      return titleMatch || ingredientsMatch;
+    });
+  };
+
+  const filteredUserRecipes = filterRecipes(userRecipes, searchQuery);
+  const filteredFavoriteRecipes = filterRecipes(favoriteRecipes, searchQuery);
 
   return (
     <div>
@@ -275,10 +295,16 @@ const FavoriteRecipes: React.FC = () => {
           ? "Hide Favorite Recipes"
           : "Show Favorite Recipes"}
       </button>
+      <input
+        type="text"
+        placeholder="Search recipes..."
+        onChange={handleSearch}
+        className="search-input"
+      />
       {showUserRecipes && (
         <div>
           <h2>Recipes Added by {userName}</h2>
-          {userRecipes.map((recipe: any) => (
+          {filteredUserRecipes.map((recipe: any) => (
             <div className="recipe-item" key={recipe.id}>
               <RecipeItem key={recipe.id} recipe={recipe} />
               {/* Відображення деталей рецепту */}
@@ -299,7 +325,7 @@ const FavoriteRecipes: React.FC = () => {
       {showFavoriteRecipes && (
         <div>
           <h2>Recipes liked by {userName}</h2>
-          {favoriteRecipes.map((recipe: any, index: number) => (
+          {filteredFavoriteRecipes.map((recipe: any, index: number) => (
             <div className="recipe-item" key={recipe.id}>
               <RecipeItem key={recipe.id} recipe={recipe} />
               <button
